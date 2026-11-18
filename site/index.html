@@ -113,6 +113,25 @@
   <!-- Scroll Spacer (height set dynamically by app.js) -->
   <div id="scroll-spacer"></div>
 
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBRZfeXx1iodsNkUQXZZkMgDDHfKJ_kG-M",
+      authDomain: "d-portfolio-12622.firebaseapp.com",
+      projectId: "d-portfolio-12622",
+      storageBucket: "d-portfolio-12622.firebasestorage.app",
+      messagingSenderId: "651638142717",
+      appId: "1:651638142717:web:59b05112ac734ad0007094",
+      measurementId: "G-JZ7KEDRN4K"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
