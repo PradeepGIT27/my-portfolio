@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Pradeep Sakthivel — Senior Mobile Engineer (Android &amp; Flutter)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader" class="loader" aria-live="polite">
+    <div class="loader-inner">
+      <div id="loader-name" class="loader-name">PRADEEP SAKTHIVEL</div>
+      <div class="loader-track">
+        <div id="loader-bar" class="loader-bar"></div>
+      </div>
+      <div id="loader-pct" class="loader-pct">0%</div>
+    </div>
+  </div>
+
+  <!-- Top Navigation -->
+  <header class="topbar">
+    <a href="#home" class="brand" id="nav-brand">PORTFOLIO</a>
+    <nav class="nav" aria-label="Primary">
+      <button data-target="home">Home</button>
+      <button data-target="about">About</button>
+      <button data-target="work">Work</button>
+      <button data-target="skills">Skills</button>
+      <button data-target="resume">Resume</button>
+      <button data-target="contact">Contact</button>
+    </nav>
+    <div class="progress-track"><div id="scroll-progress" class="progress-bar"></div></div>
+  </header>
+
+  <!-- Fixed Full-Screen Video Stage -->
+  <div class="stage" aria-hidden="true">
+    <div id="video-wrap" class="video-wrap">
+      <video id="film" playsinline muted preload="auto" poster="media/poster.jpg"></video>
+    </div>
+    <div class="mobile-gradient"></div>
+
+    <!-- SVG Contact Frame Overlay -->
+    <svg id="contact-svg" class="contact-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+      <rect id="contact-rect" x="245" y="90" width="325" height="865" rx="28" ry="28" fill="none" stroke="var(--accent)" stroke-width="4" />
+    </svg>
+  </div>
+
+  <!-- Overlay Sections (synced to film time) -->
+  <main class="overlays">
+    <!-- INTRO -->
+    <section id="sec-home" class="panel panel-intro">
+      <p class="intro-hi">Hi, I'm</p>
+      <h1 class="intro-name">
+        <span id="intro-first">PRADEEP</span>
+        <span id="intro-last" class="accent">SAKTHIVEL</span>
+      </h1>
+      <p id="intro-role" class="intro-role"></p>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span id="intro-status"></span>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="sec-about" class="panel panel-glass panel-left">
+      <div id="about-eyebrow" class="eyebrow"></div>
+      <h2 id="about-title" class="section-title"></h2>
+      <p id="about-bio" class="section-body"></p>
+      <div id="about-stats" class="stats-grid"></div>
+    </section>
+
+    <!-- WORK -->
+    <section id="sec-work" class="panel panel-work">
+      <div class="eyebrow">02 — SELECTED WORK</div>
+      <div id="work-cards" class="work-cards"></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="sec-skills" class="panel panel-skills">
+      <div class="eyebrow">03 — SKILLS &amp; STACK</div>
+      <div id="skills-list" class="skills-list"></div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="sec-resume" class="panel panel-resume">
+      <div id="resume-card" class="paper-card">
+        <div id="resume-eyebrow" class="paper-eyebrow"></div>
+        <h3 class="paper-heading">EXPERIENCE</h3>
+        <div id="resume-exp" class="paper-list"></div>
+        <h3 class="paper-heading">EDUCATION</h3>
+        <div id="resume-edu" class="paper-list"></div>
+        <a id="resume-download" class="paper-btn" href="media/resume.pdf" download>Download resume ↓</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="sec-contact" class="panel panel-glass panel-contact">
+      <div id="contact-eyebrow" class="eyebrow"></div>
+      <h2 class="contact-headline">
+        <span id="contact-h1"></span><br />
+        <span id="contact-h2" class="accent"></span>
+      </h2>
+      <a id="contact-email" class="contact-email" href=""></a>
+      <div id="contact-links" class="contact-links"></div>
+    </section>
+  </main>
+
+  <div id="scroll-hint" class="scroll-hint">Scroll to begin ↓</div>
+
+  <!-- Scroll Spacer (height set dynamically by app.js) -->
+  <div id="scroll-spacer"></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

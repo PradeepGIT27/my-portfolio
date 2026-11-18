@@ -1,0 +1,18 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+
+# Node / NPM
+node_modules/
+npm-debug.log*
+
+# Temporary build / scratch files
+*.raw
+*.log
+scratch/
+clips_list.txt
