@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
   <title>Pradeep Sakthivel — Senior Mobile Engineer (Android &amp; Flutter)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,6 +14,7 @@
   <!-- Loader -->
   <div id="loader" class="loader" aria-live="polite">
     <div class="loader-inner">
+      <div class="loader-eyebrow">INTERACTIVE STUDIO REEL</div>
       <div id="loader-name" class="loader-name">PRADEEP SAKTHIVEL</div>
       <div class="loader-track">
         <div id="loader-bar" class="loader-bar"></div>
@@ -27,30 +29,43 @@
     <nav class="nav" aria-label="Primary">
       <button data-target="home">Home</button>
       <button data-target="about">About</button>
-      <button data-target="work">Work</button>
       <button data-target="skills">Skills</button>
+      <button data-target="work">Work</button>
       <button data-target="resume">Resume</button>
       <button data-target="contact">Contact</button>
     </nav>
     <div class="progress-track"><div id="scroll-progress" class="progress-bar"></div></div>
   </header>
 
+  <!-- Chapter Progress Rail (Desktop) -->
+  <aside id="chapter-rail" class="chapter-rail" aria-label="Chapters">
+    <button data-target="home" data-label="00 Home" aria-label="Jump to Home"></button>
+    <button data-target="about" data-label="01 About" aria-label="Jump to About"></button>
+    <button data-target="skills" data-label="02 Skills" aria-label="Jump to Skills"></button>
+    <button data-target="work" data-label="03 Work" aria-label="Jump to Work"></button>
+    <button data-target="resume" data-label="04 Resume" aria-label="Jump to Resume"></button>
+    <button data-target="contact" data-label="05 Contact" aria-label="Jump to Contact"></button>
+  </aside>
+
   <!-- Fixed Full-Screen Video Stage -->
   <div class="stage" aria-hidden="true">
+    <div id="stage-glow" class="stage-glow"></div>
     <div id="video-wrap" class="video-wrap">
-      <video id="film" playsinline muted preload="auto" poster="media/poster.jpg"></video>
+      <video id="film" playsinline muted preload="auto" poster="media/poster.jpg?v=6"></video>
     </div>
+    <div class="stage-vignette"></div>
     <div class="mobile-gradient"></div>
 
-    <!-- SVG Contact Frame Overlay -->
+    <!-- Architectural SVG Contact Frame Overlay -->
     <svg id="contact-svg" class="contact-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-      <rect id="contact-rect" x="245" y="90" width="325" height="865" rx="28" ry="28" fill="none" stroke="var(--accent)" stroke-width="4" />
+      <rect id="contact-rect" x="220" y="100" width="295" height="835" rx="22" ry="22" fill="none" stroke="var(--accent)" stroke-opacity="0.4" stroke-width="2" />
+      <path id="contact-corners" d="M220 155 L220 122 Q220 100 242 100 L275 100 M460 100 L493 100 Q515 100 515 122 L515 155 M515 880 L515 913 Q515 935 493 935 L460 935 M275 935 L242 935 Q220 935 220 913 L220 880" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" />
     </svg>
   </div>
 
   <!-- Overlay Sections (synced to film time) -->
   <main class="overlays">
-    <!-- INTRO -->
+    <!-- 00: INTRO -->
     <section id="sec-home" class="panel panel-intro">
       <p class="intro-hi">Hi, I'm</p>
       <h1 class="intro-name">
@@ -64,7 +79,7 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- 01: ABOUT -->
     <section id="sec-about" class="panel panel-glass panel-left">
       <div id="about-eyebrow" class="eyebrow"></div>
       <h2 id="about-title" class="section-title"></h2>
@@ -72,43 +87,54 @@
       <div id="about-stats" class="stats-grid"></div>
     </section>
 
-    <!-- WORK -->
-    <section id="sec-work" class="panel panel-work">
-      <div class="eyebrow">02 — SELECTED WORK</div>
-      <div id="work-cards" class="work-cards"></div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="sec-skills" class="panel panel-skills">
-      <div class="eyebrow">03 — SKILLS &amp; STACK</div>
+    <!-- 02: SKILLS (Character opens palm presenting to right) -->
+    <section id="sec-skills" class="panel panel-glass panel-skills">
+      <div id="skills-eyebrow" class="eyebrow">02 — SKILLS &amp; STACK</div>
+      <h2 id="skills-title" class="section-title skills-heading"></h2>
       <div id="skills-list" class="skills-list"></div>
     </section>
 
-    <!-- RESUME -->
+    <!-- 03: WORK (Character seated on chair) -->
+    <section id="sec-work" class="panel panel-work">
+      <div id="work-eyebrow" class="eyebrow">03 — SELECTED WORK</div>
+      <div id="work-cards" class="work-cards"></div>
+    </section>
+
+    <!-- 04: RESUME (Character pulls glowing digital card from blazer) -->
     <section id="sec-resume" class="panel panel-resume">
-      <div id="resume-card" class="paper-card">
+      <div id="resume-card" class="paper-card digital-card">
+        <span class="holo-corner tl" aria-hidden="true"></span>
+        <span class="holo-corner tr" aria-hidden="true"></span>
+        <span class="holo-corner bl" aria-hidden="true"></span>
+        <span class="holo-corner br" aria-hidden="true"></span>
         <div id="resume-eyebrow" class="paper-eyebrow"></div>
         <h3 class="paper-heading">EXPERIENCE</h3>
         <div id="resume-exp" class="paper-list"></div>
         <h3 class="paper-heading">EDUCATION</h3>
         <div id="resume-edu" class="paper-list"></div>
-        <a id="resume-download" class="paper-btn" href="media/resume.pdf" download>Download resume ↓</a>
+        <a id="resume-download" class="paper-btn" href="media/resume.pdf" download>Download Resume ↓</a>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- 05: CONTACT (Character waves warmly) -->
     <section id="sec-contact" class="panel panel-glass panel-contact">
       <div id="contact-eyebrow" class="eyebrow"></div>
       <h2 class="contact-headline">
         <span id="contact-h1"></span><br />
         <span id="contact-h2" class="accent"></span>
       </h2>
-      <a id="contact-email" class="contact-email" href=""></a>
+      <div class="contact-email-row">
+        <a id="contact-email" class="contact-email" href=""></a>
+        <button id="copy-email-btn" class="copy-email-btn" type="button" aria-label="Copy email address">Copy</button>
+      </div>
       <div id="contact-links" class="contact-links"></div>
     </section>
   </main>
 
-  <div id="scroll-hint" class="scroll-hint">Scroll to begin ↓</div>
+  <div id="scroll-hint" class="scroll-hint">
+    <span>Scroll to explore</span>
+    <span class="scroll-line" aria-hidden="true"></span>
+  </div>
 
   <!-- Scroll Spacer (height set dynamically by app.js) -->
   <div id="scroll-spacer"></div>
@@ -129,7 +155,7 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    getAnalytics(app);
   </script>
 
   <script src="config.js"></script>
