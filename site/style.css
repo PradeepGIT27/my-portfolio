@@ -534,7 +534,7 @@ html, body {
   margin: 0;
 }
 
-/* 04: Resume Card (Pull-down backdrop synced to overhead pull clip) */
+/* 04: Resume Card (Holographic UI reveal synced to fingertip touch clip) */
 .panel-resume {
   right: 5.5vw;
   top: 50%;
@@ -543,39 +543,26 @@ html, body {
   max-height: 84vh;
 }
 .panel-resume.visible { transform: translateY(-50%); }
-.resume-pull-rail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: -1px;
-  will-change: transform, opacity;
-}
-.pull-cord {
-  width: 1px;
-  height: 18px;
-  background: linear-gradient(to bottom, transparent, var(--accent));
-}
-.pull-handle {
-  width: 64px;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 14px rgba(255, 154, 77, 0.55);
-}
 .paper-card {
-  background: rgba(14, 12, 10, 0.84);
+  position: relative;
+  background: rgba(12, 13, 15, 0.82);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
   border: 1px solid var(--glass-border);
-  border-top-color: rgba(255, 154, 77, 0.35);
+  border-left-color: rgba(127, 231, 255, 0.28);
+  border-top-color: rgba(255, 154, 77, 0.28);
   border-radius: 18px;
   color: var(--text);
   padding: 22px 26px;
   max-height: 80vh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.78), inset 0 1px 0 var(--glass-highlight);
-  will-change: transform, opacity, clip-path;
+  transform-origin: left center;
+  box-shadow:
+    0 28px 65px rgba(0, 0, 0, 0.78),
+    0 0 36px rgba(127, 231, 255, 0.06),
+    inset 0 1px 0 var(--glass-highlight);
+  will-change: transform, opacity, filter;
 }
 .paper-eyebrow {
   font-size: 0.72rem;
@@ -803,7 +790,6 @@ html, body {
   .panel::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 999px; }
   .panel-glass { padding: 16px 18px; border-radius: 16px; }
   .paper-card { padding: 16px 18px; }
-  .resume-pull-rail { display: none; }
   .intro-name { font-size: 3rem; }
   .skills-heading { font-size: 1.3rem; margin-bottom: 12px; }
   .skills-list { gap: 6px; }

@@ -98,7 +98,6 @@
   const progressBar = document.getElementById("scroll-progress");
   const scrollHint = document.getElementById("scroll-hint");
   const resumeCard = document.getElementById("resume-card");
-  const resumeRail = document.getElementById("resume-pull-rail");
   const contactSvg = document.getElementById("contact-svg");
   const contactRect = document.getElementById("contact-rect");
   const contactCorners = document.getElementById("contact-corners");
@@ -113,7 +112,7 @@
   }
 
   const isMobile = () => window.innerWidth <= 760;
-  const mediaSrc = isMobile() ? "media/film_mobile.mp4?v=3" : "media/film.mp4?v=3";
+  const mediaSrc = isMobile() ? "media/film_mobile.mp4?v=4" : "media/film.mp4?v=4";
 
   let loaderDone = false;
   let fetchActive = false;
@@ -303,18 +302,18 @@
         .forEach((btn) => btn.classList.toggle("active", active));
     });
 
-    // Resume pull-down unroll synced 1:1 with overhead pull clip
+    // Resume holographic materialization synced with fingertip touch & particle burst
     const [rStart, rEnd] = C.timeline.resumeDrop;
     const rRaw = Math.min(1, Math.max(0, (smoothTime - rStart) / Math.max(0.01, rEnd - rStart)));
     const rEase = 1 - Math.pow(1 - rRaw, 3);
-    const clipBottom = Math.max(0, (1 - rEase) * 88);
-    resumeCard.style.transform = `translateY(${((1 - rEase) * -56).toFixed(1)}px)`;
-    resumeCard.style.clipPath = `inset(0 0 ${clipBottom.toFixed(1)}% 0 round 18px)`;
-    resumeCard.style.opacity = `${Math.min(1, Math.max(0.15, rEase * 1.35))}`;
-    if (resumeRail) {
-      resumeRail.style.transform = `translateY(${((1 - rEase) * -42).toFixed(1)}px)`;
-      resumeRail.style.opacity = `${Math.min(1, rEase * 1.5)}`;
-    }
+    const scale = 0.88 + 0.12 * rEase;
+    const tx = (1 - rEase) * -28;
+    const blur = (1 - rEase) * 6;
+    const holoGlow = Math.sin(rRaw * Math.PI) * 0.42;
+    resumeCard.style.transform = `translate3d(${tx.toFixed(1)}px, 0, 0) scale(${scale.toFixed(4)})`;
+    resumeCard.style.filter = blur > 0.1 ? `blur(${blur.toFixed(1)}px)` : "none";
+    resumeCard.style.opacity = `${Math.min(1, Math.max(0.05, rEase * 1.25))}`;
+    resumeCard.style.boxShadow = `0 28px 65px rgba(0, 0, 0, 0.78), 0 0 ${(24 + holoGlow * 55).toFixed(0)}px rgba(127, 231, 255, ${(0.06 + holoGlow * 0.35).toFixed(2)}), inset 0 1px 0 rgba(255, 255, 255, 0.08)`;
 
     // Contact architectural frame draw
     const [cStart, cEnd] = C.timeline.contactFrame;

@@ -108,7 +108,7 @@ window.CONFIG = {
   // Clip 3 (7.71 - 10.80s): Turns & presents open palm right -> Skills
   // Dip    (10.80 - 11.20s):Studio spotlight dip into seated work scene
   // Clip 4 (11.20 - 16.52s):Chair glides in, sits & crosses leg -> Work
-  // Clip 5 (16.52 - 20.08s):Stands from chair, reaches up, pulls down -> Resume
+  // Clip 5 (16.52 - 20.08s):Stands from chair, touches holographic UI trigger -> Resume
   // Dip    (20.08 - 20.43s):Studio spotlight dip into farewell wave
   // Clip 6 (20.43 - 22.87s):Waves warmly & smiles -> Contact
   timeline: {
@@ -121,9 +121,9 @@ window.CONFIG = {
       { t: [9.65, 10.60],  h: 1.25, id: "skills" },   // HOLD: Skills & Stack
       { t: [10.60, 16.15], h: 1.65 },                 // Spotlight dip -> chair slides in, sits & crosses leg
       { t: [16.15, 16.15], h: 1.75, id: "work" },     // HOLD: Selected Work
-      { t: [16.15, 19.90], h: 1.50 },                 // Stands up -> reaches overhead -> pulls down
-      { t: [19.90, 19.90], h: 1.50, id: "resume" },   // HOLD: Resume sheet locked
-      { t: [19.90, 20.65], h: 0.90 },                 // Spotlight dip -> raises hand to wave
+      { t: [16.15, 19.65], h: 1.55 },                 // Stands up -> touches holographic trigger -> particles burst
+      { t: [19.65, 19.65], h: 1.50, id: "resume" },   // HOLD: Holographic Resume summoned
+      { t: [19.65, 20.65], h: 0.90 },                 // Spotlight dip -> raises hand to wave
       { t: [20.65, 22.75], h: 1.55, id: "contact" }   // HOLD: Waves warmly while scrolling Contact, settles smiling
     ],
     // Film-time windows [startSec, endSec] when each section is visible
@@ -132,11 +132,11 @@ window.CONFIG = {
       about:   [5.10, 7.35],
       skills:  [8.45, 10.80],
       work:    [13.30, 16.65],
-      resume:  [18.90, 20.12],
+      resume:  [18.68, 20.12],
       contact: [20.48, 999]
     },
     // Synced animation windows
-    resumeDrop:   [18.75, 19.60],
+    resumeDrop:   [18.70, 19.55],
     contactFrame: [20.45, 21.15],
     // Desktop horizontal video shift (vw) keyframes: [timeSec, shiftVw]
     desktopShift: [
@@ -146,6 +146,10 @@ window.CONFIG = {
       [7.75, -14],
       [10.8, -14],
       [11.3, -13],
+      [16.3, -13],
+      [17.4, -17],
+      [19.9, -17],
+      [20.4, -13],
       [22.9, -13]
     ]
   }
