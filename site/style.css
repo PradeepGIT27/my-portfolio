@@ -534,7 +534,7 @@ html, body {
   margin: 0;
 }
 
-/* 04: Resume Card (Digital card reveal synced to glowing card pull clip) */
+/* 04: Resume Card (Warm amber obsidian card synced to card-dissolve clip) */
 .panel-resume {
   right: 5.5vw;
   top: 50%;
@@ -545,10 +545,10 @@ html, body {
 .panel-resume.visible { transform: translateY(-50%); }
 .paper-card {
   position: relative;
-  background: rgba(11, 14, 18, 0.84);
+  background: rgba(16, 13, 10, 0.90);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
-  border: 1px solid rgba(96, 225, 255, 0.22);
+  border: 1px solid rgba(255, 154, 77, 0.28);
   border-radius: 18px;
   color: var(--text);
   padding: 22px 26px;
@@ -557,16 +557,16 @@ html, body {
   overscroll-behavior: contain;
   transform-origin: left center;
   box-shadow:
-    0 28px 65px rgba(0, 0, 0, 0.78),
-    0 0 38px rgba(64, 210, 255, 0.1),
-    inset 0 1px 0 rgba(160, 238, 255, 0.14);
+    0 28px 70px rgba(0, 0, 0, 0.85),
+    0 0 40px rgba(255, 154, 77, 0.12),
+    inset 0 1px 0 rgba(255, 214, 175, 0.14);
   will-change: transform, opacity, filter;
 }
 .holo-corner {
   position: absolute;
   width: 12px;
   height: 12px;
-  border-color: rgba(102, 227, 255, 0.75);
+  border-color: rgba(255, 154, 77, 0.85);
   border-style: solid;
   pointer-events: none;
 }
@@ -604,24 +604,24 @@ html, body {
   gap: 8px;
 }
 .paper-item {
-  padding: 7px 12px;
-  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.048);
   border-left: 2px solid var(--accent);
   border-radius: 0 8px 8px 0;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 .paper-item:hover {
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 154, 77, 0.09);
   transform: translateX(3px);
 }
 .paper-role {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.91rem;
   color: #ffffff;
 }
 .paper-meta {
-  font-size: 0.77rem;
-  color: #a8a096;
+  font-size: 0.78rem;
+  color: #c7beb4;
   margin-top: 2px;
 }
 .paper-btn {

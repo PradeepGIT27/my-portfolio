@@ -112,7 +112,7 @@
   }
 
   const isMobile = () => window.innerWidth <= 760;
-  const mediaSrc = isMobile() ? "media/film_mobile.mp4?v=5" : "media/film.mp4?v=5";
+  const mediaSrc = isMobile() ? "media/film_mobile.mp4?v=6" : "media/film.mp4?v=6";
 
   let loaderDone = false;
   let fetchActive = false;
@@ -302,19 +302,19 @@
         .forEach((btn) => btn.classList.toggle("active", active));
     });
 
-    // Resume digital card deployment synced with glowing card pull from jacket
+    // Resume warm-amber card deployment synced with card release & ember dissolve
     const [rStart, rEnd] = C.timeline.resumeDrop;
     const rRaw = Math.min(1, Math.max(0, (smoothTime - rStart) / Math.max(0.01, rEnd - rStart)));
     const rEase = 1 - Math.pow(1 - rRaw, 3);
-    const scale = 0.74 + 0.26 * rEase;
-    const tx = (1 - rEase) * -68;
-    const ty = (1 - rEase) * -12;
+    const scale = 0.78 + 0.22 * rEase;
+    const tx = (1 - rEase) * -58;
+    const ty = (1 - rEase) * -8;
     const blur = (1 - rEase) * 5;
     const cardGlow = Math.sin(rRaw * Math.PI) * 0.45;
     resumeCard.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) scale(${scale.toFixed(4)})`;
     resumeCard.style.filter = blur > 0.1 ? `blur(${blur.toFixed(1)}px)` : "none";
-    resumeCard.style.opacity = `${Math.min(1, Math.max(0.04, rEase * 1.25))}`;
-    resumeCard.style.boxShadow = `0 28px 65px rgba(0, 0, 0, 0.78), 0 0 ${(28 + cardGlow * 55).toFixed(0)}px rgba(64, 210, 255, ${(0.1 + cardGlow * 0.36).toFixed(2)}), inset 0 1px 0 rgba(160, 238, 255, 0.14)`;
+    resumeCard.style.opacity = `${Math.min(1, Math.max(0.05, rEase * 1.25))}`;
+    resumeCard.style.boxShadow = `0 28px 70px rgba(0, 0, 0, 0.85), 0 0 ${(32 + cardGlow * 56).toFixed(0)}px rgba(255, 154, 77, ${(0.12 + cardGlow * 0.34).toFixed(2)}), inset 0 1px 0 rgba(255, 214, 175, 0.14)`;
 
     // Contact architectural frame draw
     const [cStart, cEnd] = C.timeline.contactFrame;

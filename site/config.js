@@ -108,9 +108,9 @@ window.CONFIG = {
   // Clip 3 (7.71 - 10.80s): Turns & presents open palm right -> Skills
   // Dip    (10.80 - 11.20s):Studio spotlight dip into seated work scene
   // Clip 4 (11.20 - 16.52s):Chair glides in, sits & crosses leg -> Work
-  // Clip 5 (16.52 - 20.08s):Stands from chair, pulls glowing digital card from pocket -> Resume
-  // Dip    (20.08 - 20.43s):Studio spotlight dip into farewell wave
-  // Clip 6 (20.43 - 22.87s):Waves warmly & smiles -> Contact
+  // Clip 5 (16.37 - 19.79s):Stands from chair, draws glowing amber card & dissolves it into embers -> Resume
+  // Dip    (19.79 - 20.14s):Studio spotlight dip into farewell wave
+  // Clip 6 (20.14 - 22.59s):Waves warmly & smiles -> Contact
   timeline: {
     segments: [
       { t: [0.0, 3.75],    h: 1.25 },                 // Turn around
@@ -119,25 +119,25 @@ window.CONFIG = {
       { t: [7.05, 7.05],   h: 1.05, id: "about" },    // HOLD: About
       { t: [7.05, 9.65],   h: 1.15 },                 // Spotlight dip -> open-palm Skills gesture
       { t: [9.65, 10.60],  h: 1.25, id: "skills" },   // HOLD: Skills & Stack
-      { t: [10.60, 16.15], h: 1.65 },                 // Spotlight dip -> chair slides in, sits & crosses leg
-      { t: [16.15, 16.15], h: 1.75, id: "work" },     // HOLD: Selected Work
-      { t: [16.15, 19.70], h: 1.55 },                 // Stands up -> pulls glowing digital card out & projects right
-      { t: [19.70, 19.70], h: 1.50, id: "resume" },   // HOLD: Glowing card hovering beside Resume panel
-      { t: [19.70, 20.65], h: 0.90 },                 // Spotlight dip -> raises hand to wave
-      { t: [20.65, 22.75], h: 1.55, id: "contact" }   // HOLD: Waves warmly while scrolling Contact, settles smiling
+      { t: [10.60, 16.05], h: 1.65 },                 // Spotlight dip -> chair slides in, sits & crosses leg
+      { t: [16.05, 16.05], h: 1.75, id: "work" },     // HOLD: Selected Work
+      { t: [16.05, 19.45], h: 1.55 },                 // Spotlight dip -> draws amber card -> dissolves into embers
+      { t: [19.45, 19.45], h: 1.50, id: "resume" },   // HOLD: Resume card crisp as embers fade
+      { t: [19.45, 20.45], h: 0.90 },                 // Spotlight dip -> raises hand to wave
+      { t: [20.45, 22.50], h: 1.55, id: "contact" }   // HOLD: Waves warmly while scrolling Contact, settles smiling
     ],
     // Film-time windows [startSec, endSec] when each section is visible
     windows: {
       home:    [1.40, 4.15],
       about:   [5.10, 7.35],
       skills:  [8.45, 10.80],
-      work:    [13.30, 16.65],
-      resume:  [18.72, 20.12],
-      contact: [20.48, 999]
+      work:    [13.30, 16.38],
+      resume:  [18.30, 19.82],
+      contact: [20.20, 999]
     },
     // Synced animation windows
-    resumeDrop:   [18.75, 19.55],
-    contactFrame: [20.45, 21.15],
+    resumeDrop:   [18.35, 19.20],
+    contactFrame: [20.20, 20.95],
     // Desktop horizontal video shift (vw) keyframes: [timeSec, shiftVw]
     desktopShift: [
       [0.0,   18],
@@ -146,11 +146,11 @@ window.CONFIG = {
       [7.75, -14],
       [10.8, -14],
       [11.3, -13],
-      [16.3, -13],
-      [17.4, -17],
-      [19.9, -17],
-      [20.4, -13],
-      [22.9, -13]
+      [16.2, -13],
+      [16.8, -15],
+      [19.7, -15],
+      [20.2, -13],
+      [22.7, -13]
     ]
   }
 };
