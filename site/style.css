@@ -534,7 +534,7 @@ html, body {
   margin: 0;
 }
 
-/* 04: Resume Card (Holographic UI reveal synced to fingertip touch clip) */
+/* 04: Resume Card (Digital card reveal synced to glowing card pull clip) */
 .panel-resume {
   right: 5.5vw;
   top: 50%;
@@ -545,12 +545,10 @@ html, body {
 .panel-resume.visible { transform: translateY(-50%); }
 .paper-card {
   position: relative;
-  background: rgba(12, 13, 15, 0.82);
+  background: rgba(11, 14, 18, 0.84);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
-  border: 1px solid var(--glass-border);
-  border-left-color: rgba(127, 231, 255, 0.28);
-  border-top-color: rgba(255, 154, 77, 0.28);
+  border: 1px solid rgba(96, 225, 255, 0.22);
   border-radius: 18px;
   color: var(--text);
   padding: 22px 26px;
@@ -560,10 +558,22 @@ html, body {
   transform-origin: left center;
   box-shadow:
     0 28px 65px rgba(0, 0, 0, 0.78),
-    0 0 36px rgba(127, 231, 255, 0.06),
-    inset 0 1px 0 var(--glass-highlight);
+    0 0 38px rgba(64, 210, 255, 0.1),
+    inset 0 1px 0 rgba(160, 238, 255, 0.14);
   will-change: transform, opacity, filter;
 }
+.holo-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(102, 227, 255, 0.75);
+  border-style: solid;
+  pointer-events: none;
+}
+.holo-corner.tl { top: 8px; left: 8px; border-width: 1.5px 0 0 1.5px; border-radius: 3px 0 0 0; }
+.holo-corner.tr { top: 8px; right: 8px; border-width: 1.5px 1.5px 0 0; border-radius: 0 3px 0 0; }
+.holo-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 1.5px 1.5px; border-radius: 0 0 0 3px; }
+.holo-corner.br { bottom: 8px; right: 8px; border-width: 0 1.5px 1.5px 0; border-radius: 0 0 3px 0; }
 .paper-eyebrow {
   font-size: 0.72rem;
   letter-spacing: 0.16em;
