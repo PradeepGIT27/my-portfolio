@@ -16,5 +16,7 @@ npm-debug.log*
 *.log
 scratch/
 clips_list.txt
+raw_film.mp4
+film_master.mp4
 
 .firebase/

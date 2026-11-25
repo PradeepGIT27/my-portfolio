@@ -16,10 +16,22 @@
   document.getElementById("about-title").textContent = C.about.title;
   document.getElementById("about-bio").textContent = C.about.bio;
   const statsEl = document.getElementById("about-stats");
-  C.about.stats.forEach((s) => {
-    statsEl.innerHTML += `<div><div class="stat-val">${s.value}</div><div class="stat-lbl">${s.label}</div></div>`;
+  statsEl.innerHTML = C.about.stats
+    .map((s) => `<div><div class="stat-val">${s.value}</div><div class="stat-lbl">${s.label}</div></div>`)
+    .join("");
+
+  if (C.skillsEyebrow) document.getElementById("skills-eyebrow").textContent = C.skillsEyebrow;
+  if (C.skillsTitle) document.getElementById("skills-title").textContent = C.skillsTitle;
+  const skillsEl = document.getElementById("skills-list");
+  C.skills.forEach((sk, i) => {
+    const span = document.createElement("span");
+    span.className = "skill-chip";
+    span.style.transitionDelay = `${i * 22}ms`;
+    span.textContent = sk;
+    skillsEl.appendChild(span);
   });
 
+  if (C.workEyebrow) document.getElementById("work-eyebrow").textContent = C.workEyebrow;
   const workEl = document.getElementById("work-cards");
   C.projects.forEach((p, i) => {
     const el = document.createElement(p.link ? "a" : "div");
@@ -29,29 +41,26 @@
       el.target = "_blank";
       el.rel = "noopener noreferrer";
     }
-    el.style.transitionDelay = `${i * 110}ms`;
-    el.innerHTML = `<div class="work-title">${p.title}</div><div class="work-tech">${p.tech}</div><p class="work-desc">${p.description}</p>`;
+    el.style.transitionDelay = `${i * 100}ms`;
+    const num = String(i + 1).padStart(2, "0");
+    el.innerHTML = `
+      <div class="work-header">
+        <div class="work-title">${p.title}</div>
+        <span class="work-index">${num}</span>
+      </div>
+      <div class="work-tech">${p.tech}</div>
+      <p class="work-desc">${p.description}</p>
+    `;
     workEl.appendChild(el);
   });
 
-  const skillsEl = document.getElementById("skills-list");
-  C.skills.forEach((sk, i) => {
-    const span = document.createElement("span");
-    span.className = "skill-chip";
-    span.style.transitionDelay = `${i * 45}ms`;
-    span.textContent = sk;
-    skillsEl.appendChild(span);
-  });
-
   document.getElementById("resume-eyebrow").textContent = C.resume.eyebrow;
-  const expEl = document.getElementById("resume-exp");
-  C.resume.experience.forEach((e) => {
-    expEl.innerHTML += `<div class="paper-item"><div class="paper-role">${e.role}</div><div class="paper-meta">${e.company} • ${e.period}</div></div>`;
-  });
-  const eduEl = document.getElementById("resume-edu");
-  C.resume.education.forEach((e) => {
-    eduEl.innerHTML += `<div class="paper-item"><div class="paper-role">${e.degree}</div><div class="paper-meta">${e.school} • ${e.period}</div></div>`;
-  });
+  document.getElementById("resume-exp").innerHTML = C.resume.experience
+    .map((e) => `<div class="paper-item"><div class="paper-role">${e.role}</div><div class="paper-meta">${e.company} • ${e.period}</div></div>`)
+    .join("");
+  document.getElementById("resume-edu").innerHTML = C.resume.education
+    .map((e) => `<div class="paper-item"><div class="paper-role">${e.degree}</div><div class="paper-meta">${e.school} • ${e.period}</div></div>`)
+    .join("");
   document.getElementById("resume-download").href = C.resume.file;
 
   document.getElementById("contact-eyebrow").textContent = C.contact.eyebrow;
@@ -60,31 +69,54 @@
   const emailEl = document.getElementById("contact-email");
   emailEl.textContent = C.contact.email;
   emailEl.href = `mailto:${C.contact.email}`;
-  const linksEl = document.getElementById("contact-links");
-  C.contact.links.forEach((l) => {
-    linksEl.innerHTML += `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`;
-  });
+  document.getElementById("contact-links").innerHTML = C.contact.links
+    .map((l) => `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`)
+    .join("");
+
+  // Copy email helper
+  const copyBtn = document.getElementById("copy-email-btn");
+  if (copyBtn && navigator.clipboard) {
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(C.contact.email).then(() => {
+        copyBtn.textContent = "Copied ✓";
+        copyBtn.classList.add("copied");
+        setTimeout(() => {
+          copyBtn.textContent = "Copy";
+          copyBtn.classList.remove("copied");
+        }, 1800);
+      }).catch(() => {});
+    });
+  }
 
   // Video & Loader
   const video = document.getElementById("film");
   const videoWrap = document.getElementById("video-wrap");
+  const stageGlow = document.getElementById("stage-glow");
   const loader = document.getElementById("loader");
   const loaderBar = document.getElementById("loader-bar");
   const loaderPct = document.getElementById("loader-pct");
   const progressBar = document.getElementById("scroll-progress");
   const scrollHint = document.getElementById("scroll-hint");
   const resumeCard = document.getElementById("resume-card");
+  const resumeRail = document.getElementById("resume-pull-rail");
   const contactSvg = document.getElementById("contact-svg");
   const contactRect = document.getElementById("contact-rect");
+  const contactCorners = document.getElementById("contact-corners");
 
-  const rectLen = contactRect.getTotalLength ? contactRect.getTotalLength() : 2500;
+  const rectLen = contactRect.getTotalLength ? contactRect.getTotalLength() : 2200;
   contactRect.style.strokeDasharray = rectLen;
   contactRect.style.strokeDashoffset = rectLen;
+  const cornerLen = contactCorners && contactCorners.getTotalLength ? contactCorners.getTotalLength() : 600;
+  if (contactCorners) {
+    contactCorners.style.strokeDasharray = cornerLen;
+    contactCorners.style.strokeDashoffset = cornerLen;
+  }
 
   const isMobile = () => window.innerWidth <= 760;
-  const mediaSrc = isMobile() ? "media/film_mobile.mp4" : "media/film.mp4";
+  const mediaSrc = isMobile() ? "media/film_mobile.mp4?v=3" : "media/film.mp4?v=3";
 
   let loaderDone = false;
+  let fetchActive = false;
   function hideLoader() {
     if (loaderDone) return;
     loaderDone = true;
@@ -93,13 +125,19 @@
     setTimeout(() => loader.classList.add("hidden"), 250);
   }
 
-  // Fallback timeout so loader never gets stuck
-  setTimeout(hideLoader, 15000);
+  // Fallback timeout only if stream fetch fails to progress
+  const fallbackTimer = setTimeout(() => {
+    if (!loaderDone && !fetchActive) {
+      if (!video.src) video.src = mediaSrc;
+      hideLoader();
+    }
+  }, 8000);
 
-  // Fetch whole film to blob URL for instant scrubbing
+  // Fetch whole film to blob URL for instant forward/reverse scrubbing
   fetch(mediaSrc)
     .then((res) => {
       if (!res.ok) throw new Error("Fetch failed");
+      fetchActive = true;
       const total = parseInt(res.headers.get("content-length") || "0", 10);
       const reader = res.body.getReader();
       let received = 0;
@@ -120,11 +158,19 @@
       return pump();
     })
     .then((blob) => {
+      clearTimeout(fallbackTimer);
+      const prevTime = video.currentTime || 0;
       video.src = URL.createObjectURL(blob);
-      video.addEventListener("loadeddata", hideLoader, { once: true });
+      video.addEventListener("loadeddata", () => {
+        if (prevTime > 0 && video.duration) {
+          video.currentTime = Math.min(video.duration, prevTime);
+        }
+        hideLoader();
+      }, { once: true });
       video.addEventListener("error", hideLoader, { once: true });
     })
     .catch(() => {
+      clearTimeout(fallbackTimer);
       video.src = mediaSrc;
       video.addEventListener("loadeddata", hideLoader, { once: true });
       video.addEventListener("error", hideLoader, { once: true });
@@ -155,16 +201,21 @@
   layoutSegments();
   window.addEventListener("resize", layoutSegments);
 
-  // Nav smooth scroll to hold centers
-  document.querySelectorAll(".nav button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = btn.dataset.target;
-      const found = segBounds.find((s) => s.id === id);
-      if (found) {
-        const y = (found.startY + found.endY) * 0.5;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    });
+  function jumpToSection(id) {
+    const found = segBounds.find((s) => s.id === id);
+    if (found) {
+      const y = (found.startY + found.endY) * 0.5;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  }
+
+  document.querySelectorAll(".nav button, #chapter-rail button").forEach((btn) => {
+    btn.addEventListener("click", () => jumpToSection(btn.dataset.target));
+  });
+
+  document.getElementById("nav-brand").addEventListener("click", (e) => {
+    e.preventDefault();
+    jumpToSection("home");
   });
 
   function scrollToFilmTime(y) {
@@ -186,17 +237,26 @@
     for (let i = 1; i < kf.length; i++) {
       if (t <= kf[i][0]) {
         const p = (t - kf[i - 1][0]) / (kf[i][0] - kf[i - 1][0]);
-        return kf[i - 1][1] + (kf[i][1] - kf[i - 1][1]) * p;
+        // Ease in-out cubic for smooth stage transitions
+        const ease = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+        return kf[i - 1][1] + (kf[i][1] - kf[i - 1][1]) * ease;
       }
     }
     return kf[kf.length - 1][1];
   }
 
+  // Subtle pointer parallax for cinematic depth
+  const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+  window.addEventListener("pointermove", (e) => {
+    pointer.tx = (e.clientX / Math.max(1, window.innerWidth)) * 2 - 1;
+    pointer.ty = (e.clientY / Math.max(1, window.innerHeight)) * 2 - 1;
+  });
+
   const sections = {
     home: document.getElementById("sec-home"),
     about: document.getElementById("sec-about"),
-    work: document.getElementById("sec-work"),
     skills: document.getElementById("sec-skills"),
+    work: document.getElementById("sec-work"),
     resume: document.getElementById("sec-resume"),
     contact: document.getElementById("sec-contact")
   };
@@ -211,42 +271,63 @@
     progressBar.style.width = (pct * 100) + "%";
     if (y > 40) scrollHint.classList.add("hidden");
 
+    pointer.x += (pointer.tx - pointer.x) * 0.08;
+    pointer.y += (pointer.ty - pointer.y) * 0.08;
+
     targetTime = scrollToFilmTime(y);
     smoothTime += (targetTime - smoothTime) * 0.16;
 
     if (video.readyState >= 2 && !video.seeking) {
-      const clamped = Math.min(video.duration || smoothTime, Math.max(0, smoothTime));
-      if (Math.abs(video.currentTime - clamped) > 0.02) {
+      const dur = video.duration || 22.875;
+      const clamped = Math.min(dur, Math.max(0, smoothTime));
+      if (Math.abs(video.currentTime - clamped) > 0.015) {
         video.currentTime = clamped;
       }
     }
 
-    // Desktop horizontal video shift
+    // Desktop horizontal video shift + subtle pointer parallax
     const shiftVw = interpShift(smoothTime);
-    videoWrap.style.transform = `translateX(${shiftVw}vw)`;
+    const px = isMobile() ? 0 : pointer.x * -0.7;
+    const py = isMobile() ? 0 : pointer.y * -0.35;
+    videoWrap.style.transform = `translate3d(calc(${shiftVw.toFixed(2)}vw + ${px.toFixed(2)}vw), ${py.toFixed(2)}vh, 0)`;
+    if (stageGlow) {
+      stageGlow.style.transform = `translate3d(${(shiftVw * 0.95).toFixed(2)}vw, 0, 0)`;
+    }
 
-    // Toggle section visibility
+    // Toggle section visibility & active chapter markers
     Object.entries(C.timeline.windows).forEach(([key, [s, e]]) => {
       const active = smoothTime >= s && smoothTime <= e;
-      sections[key].classList.toggle("visible", active);
-      const navBtn = document.querySelector(`.nav button[data-target="${key}"]`);
-      if (navBtn) navBtn.classList.toggle("active", active);
+      if (sections[key]) sections[key].classList.toggle("visible", active);
+      document
+        .querySelectorAll(`.nav button[data-target="${key}"], #chapter-rail button[data-target="${key}"]`)
+        .forEach((btn) => btn.classList.toggle("active", active));
     });
 
-    // Resume card reveal
+    // Resume pull-down unroll synced 1:1 with overhead pull clip
     const [rStart, rEnd] = C.timeline.resumeDrop;
-    const rProg = Math.min(1, Math.max(0, (smoothTime - rStart) / Math.max(0.01, rEnd - rStart)));
-    resumeCard.style.transform = `translateY(${(1 - rProg) * -16}px)`;
-    resumeCard.style.opacity = `${Math.min(1, Math.max(0.25, rProg * 1.4))}`;
+    const rRaw = Math.min(1, Math.max(0, (smoothTime - rStart) / Math.max(0.01, rEnd - rStart)));
+    const rEase = 1 - Math.pow(1 - rRaw, 3);
+    const clipBottom = Math.max(0, (1 - rEase) * 88);
+    resumeCard.style.transform = `translateY(${((1 - rEase) * -56).toFixed(1)}px)`;
+    resumeCard.style.clipPath = `inset(0 0 ${clipBottom.toFixed(1)}% 0 round 18px)`;
+    resumeCard.style.opacity = `${Math.min(1, Math.max(0.15, rEase * 1.35))}`;
+    if (resumeRail) {
+      resumeRail.style.transform = `translateY(${((1 - rEase) * -42).toFixed(1)}px)`;
+      resumeRail.style.opacity = `${Math.min(1, rEase * 1.5)}`;
+    }
 
-    // Contact SVG frame draw
+    // Contact architectural frame draw
     const [cStart, cEnd] = C.timeline.contactFrame;
     const cProg = Math.min(1, Math.max(0, (smoothTime - cStart) / Math.max(0.01, cEnd - cStart)));
-    contactSvg.style.opacity = cProg > 0.01 ? "1" : "0";
+    contactSvg.style.opacity = cProg > 0.02 ? "1" : "0";
     contactRect.style.strokeDashoffset = rectLen * (1 - cProg);
+    if (contactCorners) {
+      contactCorners.style.strokeDashoffset = cornerLen * (1 - Math.min(1, cProg * 1.2));
+    }
 
     requestAnimationFrame(tick);
   }
+
   // Setup inner scroll containment for scrollable cards (Work cards and Resume)
   function setupInnerScroll(id) {
     const el = document.getElementById(id);

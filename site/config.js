@@ -18,6 +18,25 @@ window.CONFIG = {
     ]
   },
 
+  skillsEyebrow: "02 — SKILLS & STACK",
+  skillsTitle: "Engineered for scale, speed & security.",
+  skills: [
+    "Kotlin (Expert)",
+    "Jetpack Compose",
+    "Flutter & Dart",
+    "Clean Architecture (MVI/MVVM)",
+    "Coroutines & StateFlow",
+    "Flutter BLoC & Riverpod",
+    "Platform Channels",
+    "Dagger-Hilt & Koin",
+    "Room DB & Offline Sync",
+    "Android Keystore & E2EE",
+    "Baseline Profiles & Jank Elimination",
+    "CI/CD (GitHub Actions & Fastlane)",
+    "BiometricPrompt"
+  ],
+
+  workEyebrow: "03 — SELECTED WORK",
   projects: [
     {
       title: "LandbankPay — Digital Financial Wallet",
@@ -34,22 +53,6 @@ window.CONFIG = {
       tech: "Flutter • Dart • BLoC • MethodChannels • AES-256/RSA",
       description: "Cross-platform international remittance architecture with native security bridges, automated KYC identity verification, and production-hardened E2EE encryption."
     }
-  ],
-
-  skills: [
-    "Kotlin (Expert)",
-    "Jetpack Compose",
-    "Flutter & Dart",
-    "Clean Architecture (MVI/MVVM)",
-    "Coroutines & StateFlow",
-    "Flutter BLoC & Riverpod",
-    "Platform Channels",
-    "Dagger-Hilt & Koin",
-    "Room DB & Offline Sync",
-    "Android Keystore & E2EE",
-    "Baseline Profiles & Jank Elimination",
-    "CI/CD (GitHub Actions & Fastlane)",
-    "BiometricPrompt"
   ],
 
   resume: {
@@ -98,47 +101,52 @@ window.CONFIG = {
     ]
   },
 
-  // Video scroll timeline (in seconds of film.mp4).
-  // Complete animated flow:
-  // Clip 1: 0.0 - 3.9s (Turn around -> Intro/Home)
-  // Clip 2: 3.9 - 7.8s (Steps to close-up -> About)
-  // Clip 3: 7.8 - 13.75s (Chair slides in, character sits & crosses leg -> Work)
-  // Seated on chair: 13.75s - 24.5s (Held seated on chair while Skills, Resume, and Contact unfold)
+  // Video scroll timeline (calibrated to 22.875s film.mp4):
+  // Clip 1 (0.00 - 3.80s):  Turns around to face camera -> Home
+  // Clip 2 (3.80 - 7.36s):  Steps forward closer -> About
+  // Dip    (7.36 - 7.71s):  Studio spotlight dip + horizontal stage shift
+  // Clip 3 (7.71 - 10.80s): Turns & presents open palm right -> Skills
+  // Dip    (10.80 - 11.20s):Studio spotlight dip into seated work scene
+  // Clip 4 (11.20 - 16.52s):Chair glides in, sits & crosses leg -> Work
+  // Clip 5 (16.52 - 20.08s):Stands from chair, reaches up, pulls down -> Resume
+  // Dip    (20.08 - 20.43s):Studio spotlight dip into farewell wave
+  // Clip 6 (20.43 - 22.87s):Waves warmly & smiles -> Contact
   timeline: {
     segments: [
-      { t: [0.0, 3.9],     h: 1.3 },                 // Clip 1: Turn around
-      { t: [3.9, 3.9],     h: 0.9, id: "home" },     // HOLD: Intro (Home)
-      { t: [3.9, 7.8],     h: 1.3 },                 // Clip 2: Steps to close-up
-      { t: [7.8, 7.8],     h: 1.0, id: "about" },    // HOLD: About
-      { t: [7.8, 13.75],   h: 1.6 },                 // Clip 3: Chair appears, sits & crosses leg
-      { t: [13.75, 13.75], h: 1.8, id: "work" },     // HOLD: Work (generous hold for project reading)
-      { t: [13.75, 17.5],  h: 1.3 },                 // Move to Skills
-      { t: [17.5, 17.5],   h: 1.1, id: "skills" },   // HOLD: Skills & Stack
-      { t: [17.5, 21.0],   h: 1.3 },                 // Move to Resume
-      { t: [21.0, 21.0],   h: 1.4, id: "resume" },   // HOLD: Resume section
-      { t: [21.0, 24.5],   h: 1.2 },                 // Move to Contact
-      { t: [24.5, 24.5],   h: 1.2, id: "contact" }   // HOLD: Contact frame & form
+      { t: [0.0, 3.75],    h: 1.25 },                 // Turn around
+      { t: [3.75, 3.75],   h: 0.90, id: "home" },     // HOLD: Home
+      { t: [3.75, 7.05],   h: 1.15 },                 // Step forward
+      { t: [7.05, 7.05],   h: 1.05, id: "about" },    // HOLD: About
+      { t: [7.05, 9.65],   h: 1.15 },                 // Spotlight dip -> open-palm Skills gesture
+      { t: [9.65, 10.60],  h: 1.25, id: "skills" },   // HOLD: Skills & Stack
+      { t: [10.60, 16.15], h: 1.65 },                 // Spotlight dip -> chair slides in, sits & crosses leg
+      { t: [16.15, 16.15], h: 1.75, id: "work" },     // HOLD: Selected Work
+      { t: [16.15, 19.90], h: 1.50 },                 // Stands up -> reaches overhead -> pulls down
+      { t: [19.90, 19.90], h: 1.50, id: "resume" },   // HOLD: Resume sheet locked
+      { t: [19.90, 20.65], h: 0.90 },                 // Spotlight dip -> raises hand to wave
+      { t: [20.65, 22.75], h: 1.55, id: "contact" }   // HOLD: Waves warmly while scrolling Contact, settles smiling
     ],
     // Film-time windows [startSec, endSec] when each section is visible
     windows: {
-      home:    [1.5, 4.4],
-      about:   [5.5, 8.4],
-      work:    [11.2, 15.2],
-      skills:  [16.0, 18.5],
-      resume:  [19.8, 22.4],
-      contact: [23.5, 999]
+      home:    [1.40, 4.15],
+      about:   [5.10, 7.35],
+      skills:  [8.45, 10.80],
+      work:    [13.30, 16.65],
+      resume:  [18.90, 20.12],
+      contact: [20.48, 999]
     },
-    // Special synced animation windows
-    resumeDrop:   [20.0, 21.0],
-    contactFrame: [23.5, 24.5],
+    // Synced animation windows
+    resumeDrop:   [18.75, 19.60],
+    contactFrame: [20.45, 21.15],
     // Desktop horizontal video shift (vw) keyframes: [timeSec, shiftVw]
     desktopShift: [
-      [0.0,   20],
-      [4.4,   20],
-      [6.0,   18],
-      [8.0,    0],
-      [11.0, -11],
-      [24.5, -11]
+      [0.0,   18],
+      [3.8,   18],
+      [7.15,  17],
+      [7.75, -14],
+      [10.8, -14],
+      [11.3, -13],
+      [22.9, -13]
     ]
   }
 };
